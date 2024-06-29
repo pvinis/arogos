@@ -18,6 +18,7 @@ const config: ExpoConfig = {
 	android: {
 		package: "codes.quad.arogos",
 		versionCode: v.build,
+		permissions: ["android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR"],
 	},
 	userInterfaceStyle: "automatic",
 	plugins: [
@@ -27,9 +28,13 @@ const config: ExpoConfig = {
 		["expo-calendar", { calendarPermission: "Needed to read calendar events." }],
 	],
 
-	extra: {},
+	extra: {
+		router: { origin: false },
+		eas: { projectId: "1a8ddfee-45a4-413c-a1fa-4f76e353d39b" },
+	},
 
 	runtimeVersion: { policy: "appVersion" },
+	owner: "pvinis",
 }
 
 fs.writeFileSync("app.json", JSON.stringify({ expo: config }))
