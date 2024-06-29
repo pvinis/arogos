@@ -35,6 +35,9 @@ importers:
       expo-font:
         specifier: ~12.0.7
         version: 12.0.7(expo@51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      expo-linking:
+        specifier: ^6.3.1
+        version: 6.3.1(expo@51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
       expo-localization:
         specifier: ~15.0.3
         version: 15.0.3(expo@51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
@@ -88,6 +91,9 @@ importers:
         version: 4.3.0(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.2.79)(react@18.2.0))
     devDependencies:
       '@babel/core':
+        specifier: ^7.24.7
+        version: 7.24.7
+      '@babel/runtime':
         specifier: ^7.24.7
         version: 7.24.7
       '@types/lodash':

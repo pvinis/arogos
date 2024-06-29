@@ -7,12 +7,12 @@
 		"icon": "./assets/app-icon.png",
 		"ios": {
 			"bundleIdentifier": "codes.quad.arogos",
-			"buildNumber": "76",
+			"buildNumber": "77",
 			"config": { "usesNonExemptEncryption": false }
 		},
 		"android": {
 			"package": "codes.quad.arogos",
-			"versionCode": 76,
+			"versionCode": 77,
 			"permissions": ["android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR"]
 		},
 		"userInterfaceStyle": "automatic",
