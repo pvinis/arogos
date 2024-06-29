@@ -20,6 +20,9 @@ importers:
       expo-application:
         specifier: ~5.9.1
         version: 5.9.1(expo@51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      expo-calendar:
+        specifier: ~13.0.5
+        version: 13.0.5(expo@51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
       expo-dev-client:
         specifier: ~4.0.18
         version: 4.0.19(expo@51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
@@ -2228,6 +2231,11 @@ packages:
 
   expo-asset@10.0.10:
     resolution: {integrity: sha512-0qoTIihB79k+wGus9wy0JMKq7DdenziVx3iUkGvMAy2azscSgWH6bd2gJ9CGnhC6JRd3qTMFBL0ou/fx7WZl7A==}
+    peerDependencies:
+      expo: '*'
+
+  expo-calendar@13.0.5:
+    resolution: {integrity: sha512-Wkk7eHvlyhWz2csxU6guYA2HFcLUfYpmlsdMy4a6bneBmFqIZG/ldnLKq/lcQ+BCrfI3fOULt3aNdF6SlZtLlw==}
     peerDependencies:
       expo: '*'
 
@@ -7734,6 +7742,10 @@ snapshots:
       md5-file: 3.2.3
     transitivePeerDependencies:
       - supports-color
+
+  expo-calendar@13.0.5(expo@51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))):
+    dependencies:
+      expo: 51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))
 
   expo-constants@16.0.2(expo@51.0.17(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))):
     dependencies:

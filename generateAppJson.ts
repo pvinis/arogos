@@ -24,6 +24,7 @@ const config: ExpoConfig = {
 		"expo-router",
 		"expo-localization",
 		["expo-font", { fonts: ["./assets/fonts/Iosevka.ttf"] }],
+		["expo-calendar", { calendarPermission: "Needed to read calendar events." }],
 	],
 
 	extra: {},
