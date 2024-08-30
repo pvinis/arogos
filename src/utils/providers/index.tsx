@@ -1,12 +1,12 @@
 import { PropsWithChildren } from "react"
-import { QueryClient } from "./QueryClient"
+import { QueryClientProvider } from "./QueryClient"
 
 export function Providers({ children }: PropsWithChildren) {
 	return (
-		<QueryClient>
+		<QueryClientProvider>
 			{/**/}
 			{children}
 			{/**/}
-		</QueryClient>
+		</QueryClientProvider>
 	)
 }

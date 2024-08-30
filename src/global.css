@@ -1,0 +1,27 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+	--color-background: white; /* background of app */
+	--color-on-background: black; /* text color on background */
+	--color-on-background-low: #bbb; /* low-emphasis text color on background */
+	--color-primary: blue; /* primary color (usually for buttons etc) */
+	--color-on-primary: white; /* text color on primary */
+	--color-opening: #eee; /* background for an opening (like a text input) */
+	--color-tint: blue; /* tint color for text link etc */
+	--color-separator: #ddd; /* separator color */
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-background: black;
+		--color-on-background: white;
+		--color-on-background-low: #111;
+		--color-primary: blue;
+		--color-on-primary: white;
+		--color-opening: #222;
+		--color-tint: blue;
+		--color-separator: #333;
+	}
+}

@@ -1,10 +1,9 @@
-#!/usr/bin/env pnpx ts-node
-
-import fs from "fs"
-import { ExpoConfig } from "expo/config"
+import type { ConfigContext, ExpoConfig } from "expo/config"
 import v from "./version.json"
 
-const config: ExpoConfig = {
+export default ({ config }: ConfigContext): ExpoConfig => ({
+	...config,
+
 	name: "Arogos",
 	slug: "arogos",
 	scheme: "arogos",
@@ -27,14 +26,8 @@ const config: ExpoConfig = {
 		["expo-font", { fonts: ["./assets/fonts/Iosevka.ttf"] }],
 		["expo-calendar", { calendarPermission: "Needed to read calendar events." }],
 	],
-
 	extra: {
 		router: { origin: false },
 		eas: { projectId: "1a8ddfee-45a4-413c-a1fa-4f76e353d39b" },
 	},
-
-	runtimeVersion: { policy: "appVersion" },
-	owner: "pvinis",
-}
-
-fs.writeFileSync("app.json", JSON.stringify({ expo: config }))
+})
