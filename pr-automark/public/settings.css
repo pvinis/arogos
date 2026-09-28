@@ -1,0 +1,228 @@
+:root {
+	color-scheme: light dark;
+	--bg: #ffffff;
+	--fg: #1f2328;
+	--muted: #59636e;
+	--border: #d1d9e0;
+	--row: #f6f8fa;
+	--accent: #1f883d;
+	--accent-fg: #ffffff;
+	--danger: #d1242f;
+	--focus: #0969da;
+	--switch-off: #818b98;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #0d1117;
+		--fg: #f0f6fc;
+		--muted: #9198a1;
+		--border: #3d444d;
+		--row: #151b23;
+		--accent: #238636;
+		--danger: #f85149;
+		--focus: #4493f8;
+		--switch-off: #656c76;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--fg);
+	font: 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial,
+		sans-serif;
+}
+
+/* Fixed width, so the popup sizes itself and the options tab gets a centered column */
+main {
+	width: 360px;
+	margin: 0 auto;
+	padding: 16px;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+h1 {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+h2 {
+	margin: 20px 0 8px;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+p {
+	margin: 0;
+}
+
+.intro {
+	margin-top: 6px;
+	color: var(--muted);
+}
+
+code {
+	font: 12px/1.4 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+ul:empty {
+	display: none;
+}
+
+li {
+	display: flex;
+	align-items: center;
+	background: var(--row);
+}
+
+li + li {
+	border-top: 1px solid var(--border);
+}
+
+li label {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px;
+	cursor: pointer;
+}
+
+li code {
+	overflow-wrap: anywhere;
+}
+
+li.disabled code {
+	color: var(--muted);
+}
+
+.switch {
+	appearance: none;
+	flex: none;
+	position: relative;
+	width: 28px;
+	height: 16px;
+	margin: 0;
+	border-radius: 8px;
+	background: var(--switch-off);
+	cursor: pointer;
+	transition: background 120ms;
+}
+
+.switch::after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: #ffffff;
+	transition: transform 120ms;
+}
+
+.switch:checked {
+	background: var(--accent);
+}
+
+.switch:checked::after {
+	transform: translateX(12px);
+}
+
+.remove {
+	flex: none;
+	width: 32px;
+	height: 32px;
+	margin-right: 2px;
+	border: 0;
+	border-radius: 6px;
+	background: none;
+	color: var(--muted);
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.remove:hover {
+	color: var(--danger);
+}
+
+.empty {
+	padding: 8px 10px;
+	border: 1px dashed var(--border);
+	border-radius: 6px;
+	color: var(--muted);
+}
+
+form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 8px;
+}
+
+form input {
+	flex: 1;
+	min-width: 0;
+	padding: 5px 8px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background: var(--bg);
+	color: var(--fg);
+	font: 12px/1.4 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+form button {
+	padding: 5px 12px;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	background: var(--accent);
+	color: var(--accent-fg);
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.error {
+	flex-basis: 100%;
+	color: var(--danger);
+}
+
+.error:empty {
+	display: none;
+}
+
+.hint {
+	margin-top: 8px;
+	color: var(--muted);
+	font-size: 12px;
+}
+
+:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 1px;
+}

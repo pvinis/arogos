@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>PR Automark</title>
+		<link rel="stylesheet" href="settings.css" />
+	</head>
+	<body>
+		<main>
+			<header>
+				<img src="icons/icon-48.png" alt="" width="24" height="24" />
+				<h1>PR Automark</h1>
+			</header>
+			<p class="intro">
+				Marks matching files as viewed when you open a pull request's changes on GitHub.
+			</p>
+
+			<section id="patterns">
+				<h2>Files</h2>
+				<ul></ul>
+				<p class="empty" hidden>No patterns yet.</p>
+				<form>
+					<input
+						placeholder="*.snap"
+						aria-label="New file pattern"
+						autocomplete="off"
+						spellcheck="false"
+					/>
+					<button>Add</button>
+					<p class="error" role="alert"></p>
+				</form>
+				<p class="hint">
+					Without a <code>/</code> a pattern matches the file name, with one the full path.
+					<code>*</code> stays within a folder, <code>**</code> crosses folders.
+				</p>
+			</section>
+
+			<section id="repos">
+				<h2>Repos</h2>
+				<ul></ul>
+				<p class="empty" hidden>No repos yet, so nothing gets marked.</p>
+				<form>
+					<input
+						placeholder="owner/repo"
+						aria-label="New repo"
+						autocomplete="off"
+						spellcheck="false"
+					/>
+					<button>Add</button>
+					<p class="error" role="alert"></p>
+				</form>
+				<p class="hint">
+					Use <code>owner/*</code> for all of an owner's repos. Pasting a GitHub link works too.
+				</p>
+			</section>
+		</main>
+		<script src="settings-page.js"></script>
+	</body>
+</html>
