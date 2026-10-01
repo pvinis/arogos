@@ -17,6 +17,17 @@ export function parseChangesUrl(url: string): PullRequest | null {
 	return { owner: match[1]!, repo: match[2]!, number: Number(match[3]) }
 }
 
+// The conversation, or any tab of it: `/changes`, `/commits`, `/checks`…
+const PULL_REQUEST_PATH = /^\/([^/]+)\/([^/]+)\/pull\/(\d+)(?:\/|$)/
+
+export function parsePullRequestUrl(url: string): PullRequest | null {
+	if (!URL.canParse(url)) return null
+	const { protocol, host, pathname } = new URL(url)
+	const match = PULL_REQUEST_PATH.exec(pathname)
+	if (protocol !== "https:" || host !== "github.com" || !match) return null
+	return { owner: match[1]!, repo: match[2]!, number: Number(match[3]) }
+}
+
 /** GitHub ids each file's diff as `diff-<sha256 of its path>` */
 export async function sha256Hex(text: string): Promise<string> {
 	const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text))
