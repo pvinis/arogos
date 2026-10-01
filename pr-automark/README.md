@@ -22,6 +22,16 @@ Click the toolbar icon to close merged PR tabs, or to change the patterns and re
 
 After changing the code, run `bun run build` again, or keep `bun run dev` running, then click the reload icon on the extension's card and refresh the GitHub tab.
 
+### Or download a build
+
+GitHub Actions builds the extension on every push to `main` that touches this folder, and on every PR that does. You can also start a run by hand from the Actions tab.
+
+1. Open the latest [pr-automark run](https://github.com/pvinis/arogos/actions/workflows/pr-automark.yml).
+2. Download the `pr-automark-<version>` artifact from the bottom of the run's page.
+3. Unzip it into a folder and pick that folder with **Load unpacked**.
+
+To update, unzip the new build into the same folder and click reload on the extension's card. Use the same folder each time. An unpacked extension's ID comes from its folder path, and the settings belong to that ID.
+
 ## Patterns
 
 - Without a `/`, a pattern matches the file name in any folder: `*.tests.tsx`.
