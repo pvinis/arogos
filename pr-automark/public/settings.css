@@ -10,6 +10,7 @@
 	--danger: #d1242f;
 	--focus: #0969da;
 	--switch-off: #818b98;
+	--merged: #8250df;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,6 +24,7 @@
 		--danger: #f85149;
 		--focus: #4493f8;
 		--switch-off: #656c76;
+		--merged: #8957e5;
 	}
 }
 
@@ -71,7 +73,7 @@ p {
 }
 
 .intro {
-	margin-top: 6px;
+	margin: -4px 0 8px;
 	color: var(--muted);
 }
 
@@ -83,22 +85,25 @@ ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	border: 1px solid var(--border);
-	border-radius: 6px;
-	overflow: hidden;
 }
 
 ul:empty {
 	display: none;
 }
 
-li {
+.rules {
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.rules li {
 	display: flex;
 	align-items: center;
 	background: var(--row);
 }
 
-li + li {
+.rules li + li {
 	border-top: 1px solid var(--border);
 }
 
@@ -112,7 +117,7 @@ li label {
 	cursor: pointer;
 }
 
-li code {
+.rules code {
 	overflow-wrap: anywhere;
 }
 
@@ -214,6 +219,51 @@ form button {
 
 .error:empty {
 	display: none;
+}
+
+.close-merged {
+	width: 100%;
+	padding: 7px 12px;
+	border: 0;
+	border-radius: 6px;
+	background: var(--merged);
+	color: #ffffff;
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.merged-list {
+	margin-top: 8px;
+}
+
+.merged-list li {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	padding: 2px 0;
+}
+
+.merged-list code {
+	color: var(--merged);
+}
+
+.merged-status {
+	color: var(--muted);
+}
+
+.merged-status:empty {
+	display: none;
+}
+
+.close-merged:not([hidden]) ~ .merged-status {
+	margin-top: 6px;
+}
+
+.label {
+	margin: 12px 0 6px;
+	color: var(--muted);
+	font-size: 12px;
 }
 
 .hint {

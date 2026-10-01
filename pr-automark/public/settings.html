@@ -12,13 +12,35 @@
 				<img src="icons/icon-48.png" alt="" width="24" height="24" />
 				<h1>PR Automark</h1>
 			</header>
-			<p class="intro">
-				Marks matching files as viewed when you open a pull request's changes on GitHub.
-			</p>
+
+			<section id="closeRepos">
+				<h2>Merged PR tabs</h2>
+				<div class="merged" aria-live="polite">
+					<button type="button" class="close-merged" hidden></button>
+					<ul class="merged-list"></ul>
+					<p class="merged-status"></p>
+				</div>
+				<p class="label">In these repos</p>
+				<ul class="rules"></ul>
+				<p class="empty" hidden>No repos yet, so no tabs get closed.</p>
+				<form>
+					<input
+						placeholder="owner/repo"
+						aria-label="New repo to close merged PR tabs in"
+						autocomplete="off"
+						spellcheck="false"
+					/>
+					<button>Add</button>
+					<p class="error" role="alert"></p>
+				</form>
+			</section>
 
 			<section id="patterns">
-				<h2>Files</h2>
-				<ul></ul>
+				<h2>Automark files</h2>
+				<p class="intro">
+					Marked as viewed when you open a pull request's changes on GitHub.
+				</p>
+				<ul class="rules"></ul>
 				<p class="empty" hidden>No patterns yet.</p>
 				<form>
 					<input
@@ -37,13 +59,13 @@
 			</section>
 
 			<section id="repos">
-				<h2>Repos</h2>
-				<ul></ul>
+				<h2>Automark repos</h2>
+				<ul class="rules"></ul>
 				<p class="empty" hidden>No repos yet, so nothing gets marked.</p>
 				<form>
 					<input
 						placeholder="owner/repo"
-						aria-label="New repo"
+						aria-label="New repo to automark in"
 						autocomplete="off"
 						spellcheck="false"
 					/>

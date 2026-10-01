@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test } from "bun:test"
 import { Window } from "happy-dom"
-import { collectPaths, findFiles, parseChangesUrl, sha256Hex } from "./github"
+import { collectPaths, findFiles, parseChangesUrl, parsePullRequestUrl, sha256Hex } from "./github"
 
 // Shaped after GitHub's React "Files changed" view (`/pull/<n>/changes`), as of September 2026
 function fileHtml(
@@ -54,6 +54,26 @@ describe("parseChangesUrl", () => {
 		expect(parseChangesUrl("https://github.com/leanscaper/mobile-app/pull/1265/commits")).toBeNull()
 		expect(parseChangesUrl("https://github.com/leanscaper/mobile-app/pulls")).toBeNull()
 		expect(parseChangesUrl("https://github.com/leanscaper/mobile-app")).toBeNull()
+	})
+})
+
+describe("parsePullRequestUrl", () => {
+	const pr = { owner: "leanscaper", repo: "mobile-app", number: 1265 }
+
+	test("reads any page of a PR", () => {
+		for (const path of ["", "/", "/changes", "/changes#diff-abc", "/files", "/commits", "/checks", "?w=1"]) {
+			expect(parsePullRequestUrl(`https://github.com/leanscaper/mobile-app/pull/1265${path}`)).toEqual(pr)
+		}
+	})
+
+	test("ignores anything that isn't a PR on github.com", () => {
+		expect(parsePullRequestUrl("https://github.com/leanscaper/mobile-app/pulls")).toBeNull()
+		expect(parsePullRequestUrl("https://github.com/leanscaper/mobile-app/issues/1265")).toBeNull()
+		expect(parsePullRequestUrl("https://github.com/leanscaper/mobile-app/pull/new/branch")).toBeNull()
+		expect(parsePullRequestUrl("https://gist.github.com/leanscaper/mobile-app/pull/1265")).toBeNull()
+		expect(parsePullRequestUrl("http://github.com/leanscaper/mobile-app/pull/1265")).toBeNull()
+		expect(parsePullRequestUrl("chrome://extensions")).toBeNull()
+		expect(parsePullRequestUrl("")).toBeNull()
 	})
 })
 

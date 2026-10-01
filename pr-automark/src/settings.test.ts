@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import { DEFAULT_SETTINGS, parsePatternInput, parseRepoInput } from "./settings"
 
-test("defaults cover the leanscaper/mobile-app test and story files", () => {
+test("defaults cover the leanscaper/mobile-app test and story files, and its merged PR tabs", () => {
 	expect(DEFAULT_SETTINGS).toEqual({
 		patterns: [
 			{ value: "*.tests.tsx", enabled: true },
@@ -9,6 +9,7 @@ test("defaults cover the leanscaper/mobile-app test and story files", () => {
 			{ value: "*.stories.tsx", enabled: true },
 		],
 		repos: [{ value: "leanscaper/mobile-app", enabled: true }],
+		closeRepos: [{ value: "leanscaper/mobile-app", enabled: true }],
 	})
 })
 

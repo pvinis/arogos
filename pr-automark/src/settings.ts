@@ -5,6 +5,8 @@ export type Settings = {
 	patterns: Rule[]
 	/** Repos to do it in, as `owner/repo` or `owner/*` */
 	repos: Rule[]
+	/** Repos whose merged PR tabs the popup closes */
+	closeRepos: Rule[]
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -14,6 +16,7 @@ export const DEFAULT_SETTINGS: Settings = {
 		{ value: "*.stories.tsx", enabled: true },
 	],
 	repos: [{ value: "leanscaper/mobile-app", enabled: true }],
+	closeRepos: [{ value: "leanscaper/mobile-app", enabled: true }],
 }
 
 export async function loadSettings(): Promise<Settings> {
@@ -25,9 +28,10 @@ export async function saveSettings(settings: Settings): Promise<void> {
 	await chrome.storage.sync.set(settings)
 }
 
-export function onSettingsChanged(callback: () => void): void {
-	chrome.storage.onChanged.addListener((_changes, area) => {
-		if (area === "sync") callback()
+/** Calls back with the keys that changed */
+export function onSettingsChanged(callback: (keys: (keyof Settings)[]) => void): void {
+	chrome.storage.onChanged.addListener((changes, area) => {
+		if (area === "sync") callback(Object.keys(changes) as (keyof Settings)[])
 	})
 }
 
