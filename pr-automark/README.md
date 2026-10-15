@@ -52,7 +52,7 @@ Limitations:
 
 - Only the new "Files changed" view (`/changes`) is supported, not the legacy `/files` view.
 - On very large PRs GitHub can switch to single-file or virtualized mode, where only the files on screen exist in the page. Those get marked as you reach them.
-- It relies on GitHub's markup (`MarkAsViewedButton` class, `diff-<hash>` ids), which GitHub can change at any time.
+- It relies on GitHub's markup (the Viewed button's `Viewed` / `Not Viewed` label, `diff-<hash>` ids), which GitHub can change at any time.
 
 ## Closing merged PR tabs
 

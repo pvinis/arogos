@@ -2,24 +2,33 @@ import { beforeEach, describe, expect, test } from "bun:test"
 import { Window } from "happy-dom"
 import { collectPaths, findFiles, parseChangesUrl, parsePullRequestUrl, sha256Hex } from "./github"
 
-// Shaped after GitHub's React "Files changed" view (`/pull/<n>/changes`), as of September 2026
+// Shaped after GitHub's React "Files changed" view (`/pull/<n>/changes`), as of October 2026
 function fileHtml(
 	path: string,
 	digest: string,
-	{ header = path, pressed = "false" as string | null, checkedIcon = false } = {},
+	{ header = path, pressed = "false" as string | null, checkedIcon = false, richDiff = false } = {},
 ) {
 	const pressedAttribute = pressed === null ? "" : `aria-pressed="${pressed}"`
+	const label = pressed === "true" || checkedIcon ? "Viewed" : "Not Viewed"
 	const icon = checkedIcon ? `<svg class="octicon octicon-checkbox-fill"></svg>` : ""
+	// Markdown and image files get a source/rich diff toggle, which is also made of pressable buttons
+	const toggle = richDiff
+		? `<button type="button" class="prc-Button-ButtonBase-9n-Xk" aria-pressed="true"></button>
+			<button type="button" class="prc-Button-ButtonBase-9n-Xk" aria-pressed="false"></button>`
+		: ""
 	return `
-		<div class="PullRequestDiffsList-module__diffEntry__a1b2c">
-			<div id="diff-${digest}" class="Diff-module__diffTargetable__d3e4f">
-				<div class="DiffFileHeader-module__diff-file-header__g5h6i">
-					<h3 class="DiffFileHeader-module__file-name__j7k8l">
-						<a href="#diff-${digest}"><code>‎${header}‏</code></a>
-					</h3>
-					<button type="button" class="MarkAsViewedButton-module__viewed__x1y2z" ${pressedAttribute}>
-						${icon}Viewed
-					</button>
+		<div class="diffEntry__YLOXdm">
+			<div id="diff-${digest}" class="diffTargetable__jbrCub diff__GZFl4M" role="region">
+				<div class="diffHeaderWrapper__INiK1j" data-diff-header-wrapper="true">
+					<div class="diff-file-header__CV6GPS">
+						<h3 class="file-name__8GKEHg file-name-truncate__1IBLuh">
+							<a href="#diff-${digest}"><code>‎${header}‏</code></a>
+						</h3>
+						${toggle}
+						<button type="button" class="prc-Button-ButtonBase-9n-Xk iconOnly__kjZ2po" aria-label="${label}" ${pressedAttribute}>
+							${icon}<span class="prc-Button-Label-FWkx3">Viewed</span>
+						</button>
+					</div>
 				</div>
 				<table><tr><td id="diff-${digest}R12">+ added line</td></tr></table>
 			</div>
@@ -151,9 +160,17 @@ describe("findFiles", () => {
 		])
 	})
 
+	test("picks the Viewed button, not the rich diff toggle", () => {
+		document.body.innerHTML = fileHtml("README.md", "e".repeat(64), { richDiff: true })
+		const files = findFiles(document, new Map())
+
+		expect(files.map(({ path, viewed }) => ({ path, viewed }))).toEqual([{ path: "README.md", viewed: false }])
+		expect(files[0]?.button.getAttribute("aria-label")).toBe("Not Viewed")
+	})
+
 	test("skips files that are still loading", () => {
 		document.body.innerHTML = `
-			<div class="PullRequestDiffsList-module__diffEntry__a1b2c">
+			<div class="diffEntry__YLOXdm">
 				<div aria-label="Loading src/components/BottomNav.tests.tsx" class="Skeleton"></div>
 			</div>`
 
