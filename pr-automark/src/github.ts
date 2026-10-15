@@ -62,8 +62,9 @@ export function collectPaths(root: ParentNode, parsedScripts = new WeakSet<Eleme
 	return [...paths]
 }
 
-const VIEWED_BUTTON = 'button[class*="MarkAsViewedButton"]'
-const FILE_CONTAINER = '[class*="Diff-module__diffTargetable"], [class*="diffEntry"]'
+// Its text always says "Viewed", its label says whether the file is
+const VIEWED_BUTTON = 'button[aria-label="Viewed"], button[aria-label="Not Viewed"]'
+const FILE_CONTAINER = '[class*="diffTargetable"], [class*="diffEntry"]'
 const FILE_ID = /^diff-([0-9a-f]{64})$/
 const DIRECTION_MARKS = /[‎‏]/g
 
